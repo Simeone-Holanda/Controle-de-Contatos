@@ -1,0 +1,78 @@
+﻿@model List<ContactModel>
+@{
+    ViewData["Title"] = "Listagem de Contatos";
+}
+
+<div class="text-center">
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-primary" role="button" asp-controller="Contact" asp-action="Create">Adicionar novo Contato</a>
+    </div>
+    <br />
+    @if (TempData["successMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+            @TempData["successMessage"]
+        </div>
+    }
+    @if (TempData["errorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["errorMessage"]
+        </div>
+    }
+
+    <br />
+    <h1 class="display-4">
+        Listagem de contatos
+    </h1>
+
+    <table class="table" id="table-contacts">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col" class="text-center">
+                    Nome
+                </th>
+                <th scope="col" class="text-center">
+                    Email
+                </th>
+                <th scope="col" class="text-center">
+                    Celular
+                </th>
+                <th scope="col" class="text-center">
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Any())
+            {
+                foreach (ContactModel contact in Model)
+                {
+                    <tr>
+                        <th scope="row">@contact.Id</th>
+                        <td>
+                            @contact.Name
+                        </td>
+                        <td>
+                            @contact.Email
+                        </td>
+                        <td>
+                            @contact.Phone
+                        </td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a role="button" class="btn btn-primary" asp-route-id="@contact.Id" asp-controller="Contact" asp-action="Update">
+                                    Editar
+                                </a>
+                                <a role="button" class="btn btn-danger" asp-route-id="@contact.Id" asp-controller="Contact" asp-action="Delete">Apagar</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,47 @@
+﻿@using CursoYoutubeProgramadorTech.Enums
+
+@model ChangePasswordModel
+@{
+    ViewData["Title"] = "Alterar senha do Usuário";
+}
+
+<div class="text-center">
+    <h1 class="display-4">
+        Alterar Senha
+    </h1>
+</div>
+
+@if (TempData["successMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+        @TempData["successMessage"]
+    </div>
+}
+@if (TempData["errorMessage"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["errorMessage"]
+    </div>
+}
+
+
+<form asp-controller="ChangePassword" asp-action="Update" method="post">
+    <div class="mb-3">
+        <label for="currentPassword" class="form-label">Senha atual</label>
+        <input type="password" asp-for="CurrentPassword" class="form-control" placeholder="Digite a senha atual">
+        @Html.ValidationMessageFor(x => x.CurrentPassword)
+    </div>
+    <div class="mb-3">
+        <label for="newPassword" class="form-label">Nova senha</label>
+        <input type="password" asp-for="NewPassowrd" class="form-control" placeholder="Digite a nova senha">
+        @Html.ValidationMessageFor(x => x.NewPassowrd)
+    </div>
+    <div class="mb-3">
+        <label for="confirmNewPassword" class="form-label">Nova senha</label>
+        <input type="password" asp-for="ConfirmNewPassowrd" class="form-control" placeholder="Confirme a nova senha">
+        @Html.ValidationMessageFor(x => x.ConfirmNewPassowrd)
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Alterar</button>
+    <a class="btn btn-secondary w-100 mt-2" asp-controller="Home" asp-action="Index" role="button">Voltar</a>
+</form>

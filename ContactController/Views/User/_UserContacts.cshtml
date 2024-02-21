@@ -1,0 +1,42 @@
+﻿@model List<ContactModel>
+
+
+<table class="table w-100" id="table-contacts-users">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col" class="text-center">
+                Nome
+            </th>
+            <th scope="col" class="text-center">
+                Email
+            </th>
+            <th scope="col" class="text-center">
+                Celular
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @if(Model != null && Model.Any())
+        {
+            @foreach (var contact in Model)
+            {
+                <tr>
+                    <th scope="row">@contact.Id</th>
+                    <td>
+                        @contact.Name
+                    </td>
+                    <td>
+                        @contact.Email
+                    </td>
+                    <td>
+                        @contact.Phone
+                    </td>
+                </tr>
+            }
+        }
+
+
+    </tbody>
+</table>

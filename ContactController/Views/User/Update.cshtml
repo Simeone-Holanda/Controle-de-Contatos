@@ -1,0 +1,44 @@
+﻿@using CursoYoutubeProgramadorTech.Enums
+
+@model UserModel
+@{
+    ViewData["Title"] = "Atualizar de Usuário";
+}
+
+<div class="text-center">
+    <h1 class="display-4">
+        Editar Usuário
+    </h1>
+</div>
+
+
+
+<form asp-controller="User" asp-action="Update" method="post">
+    <input type="hidden" asp-for="Id"/>
+    <div class="mb-3">
+        <label for="name" class="form-label">Nome</label>
+        <input type="text" asp-for="Name" class="form-control" placeholder="Digite o nome do usuário">
+        @Html.ValidationMessageFor(x => x.Name)
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">E-mail</label>
+        <input type="email" asp-for="Email" class="form-control" placeholder="Digite o e-mail do usuário">
+        @Html.ValidationMessageFor(x => x.Email)
+    </div>
+    <div class="mb-3">
+        <label for="login" class="form-label">Login</label>
+        <input type="text" asp-for="Login" class="form-control" placeholder="Digite o login do usuário">
+        @Html.ValidationMessageFor(x => x.Login)
+    </div>
+    <div class="mb-3">
+        <label for="profile" class="form-label">Perfil</label>
+        <select asp-for="Profile" class="form-control">
+            <option value=""> Selecione </option>
+            <option value="@ProfileEnum.Admin"> Admin </option>
+            <option value="@ProfileEnum.common"> Common </option>
+        </select>
+        @Html.ValidationMessageFor(x => x.Profile)
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Atualizar</button>
+    <a class="btn btn-secondary w-100 mt-2" asp-controller="User" asp-action="Index" role="button">Voltar</a>
+</form>
