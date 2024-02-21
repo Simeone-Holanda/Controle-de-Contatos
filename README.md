@@ -23,6 +23,12 @@
 ## Execução e Configuração
 * git clone https://github.com/Simeone-Holanda/Controle-de-Contatos.git
 * Lembre-se de fazer configuração do seu banco de dados e do serviço de Email em appsettings.json. Caso não seja configurado corretamente, é possível que se tenha alguns problemas.
+* No seu Package Manager Console no Visual Studio use o comando a seguir para subir as migrations: Update-Database -Context ConnectionContext
+* Execute o comando abaixo para adicionar o usuário padrão no seu banco de dados. A senha será 123456.<br>
+```
+INSERT INTO public."Users" ("Name", "Login", "Email", "Profile", "Password", "CreatedAt")
+VALUES ('Administrador', 'Admin', 'admin@admin.com', 1, '7c4a8d09ca3762af61e59520943dc26494f8941b', CURRENT_TIMESTAMP);
+```
 * Agora so executar no seu visual studio code com o comando ctrl f5
 
 <br>
